@@ -1,0 +1,125 @@
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 4rem;
+}
+
+.logo1 {
+    width: 80px;
+}
+
+.logo2 {
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.logo3 {
+    width: 80px;
+}
+
+.navbar-nav>a {
+    color: white;
+}
+
+.color {
+    background-color: #6b89a8;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.nav-item {
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.active-navbar {
+    background-color: rgb(87, 78, 219);
+    text-decoration: solid;
+    border-radius: 0px;
+}
+
+.active-side {
+    border-radius: 0.25rem;
+    color: forestgreen;
+    font-weight: bold;
+}
+
+.unactive-side {
+    border-radius: 0.25rem;
+    color: gray;
+}
+
+.start_val_1,
+.end_val_1 {
+    margin-bottom: 0px !important;
+}
+
+.sql-values {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 70px !important;
+}
+
+.queries {
+    padding: 1.25rem;
+}
+
+.card-body {
+    padding-bottom: 0px;
+}
+
+.green {
+    color: green;
+    font-weight: bold;
+}
+
+.main {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rad {
+    margin-left: 1rem;
+    /* margin-right: 1rem; */
+}
+
+.phone {
+    width: 150px !important;
+    margin-bottom: 0px !important;
+    margin-right: 5px !important;
+}
+
+#rgt {
+    margin-right: 10px;
+}
+
+.rckd {
+    width: 100px !important;
+    margin-bottom: 0px !important;
+    margin-right: 5px !important;
+}
+
+#phone_date_begin {
+    margin-right: 5px !important;
+    border-radius: 3px;
+}
+
+#phone_date_end {
+    border-radius: 3px;
+}
+
+.card-bottom {
+    padding-bottom: 1.25rem;
+}
+
+.strong {
+    margin-bottom: 0px;
+}
+
+.container-main {
+    height: 100vh;
+}

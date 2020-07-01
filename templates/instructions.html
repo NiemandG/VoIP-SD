@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOIPINT/SD Services</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/voip.css">
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg color rounded-bottom ">
+            <a class="navbar-brand" href="#">VoIP/SD</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link " href="index">Главная</a>
+                    <a class="nav-item nav-link " href="services">Сервисы</a>
+                    <a class="nav-item nav-link" href="sql_query">Запросы SQL</a>
+                    <a class="nav-item nav-link " href="notes">Заметки</a>
+                    <a class="nav-item nav-link active-navbar" href="#">Инструкции</a>
+                </div>
+                <img src="../static/images/cisco_logo.png" class="logo1" alt="" srcset="">
+                <img src="../static/images/erth.png" class="logo2" alt="" srcset="">
+                <img src="../static/images/ast_logo.png" class="logo3" alt="" srcset="">
+
+            </div>
+        </nav>
+        <div class="container">
+            <p><a target="_blank" href="http://portal.domru.ru/personal/kalinin_ae2/_layouts/15/WopiFrame2.aspx?sourcedoc=%2Fpersonal%2Fkalinin_ae2%2FDocuments%2F%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B8%2F%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B8.docx&action=view&wdparaid=7F4838F">Актуальная инструкция Калинина А.Е.</a></p>
+
+            <p>
+                <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Поиск свободных extension
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body card-bottom">
+                    <p class="strong"> Зайти в CUCM, выполнить поиск в желаемом диапазоне добавочных, нажать CRTL+A (скопировать всё), вставить в окно на странице "Сервисы - поиск свободных extension" и нажать кнопку. Выполнится поиск существующих номеров на этой странице,
+                        а затем пропусков между ними.</p>
+                </div>
+            </div>
+
+            <p>
+                <a data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Привязка extension
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample1">
+                <div class="card card-body card-bottom">
+                    <p class="strong"> На странице "Сервисы - привязка extension" в первое окно вставить свободные добавочные (можно найти на странице "Сервисы - поиск свободных extension"), во второе вставить предварительно подготовленный список МАС-адресов, и нажать кнопку
+                        "Выполнить". Будет сформирован файл CSV стандартного формата, для массовой привязки МАС в CUCM.</p>
+                </div>
+            </div>
+
+            <p>
+                <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Поиск пропущенных значений
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample2">
+                <div class="card card-body card-bottom">
+                    <p class="strong"> Будет выполнен поиск пропущенных элементов последовательности. Удобно использовать для поиска свободных Finesse ID, полученных запросом "Выборка имеющихся Finesse ID" из раздела "Запросы SQL".</p>
+                </div>
+            </div>
+
+            <p>
+                <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Проверка номера телефона
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample3">
+                <div class="card card-body card-bottom">
+                    <p class="strong"> Определение принадлежности мобильного либо городского номера к оператору и региону. Переносы номеров между операторами не определяет, ниже результата выдаётся отдельная ссылка для проверки. Сервис предоставляется сторонним сайтом
+                        <a target="_blank" href="http://phoneverify.org">phoneverify.org.</a></p>
+                </div>
+            </div>
+
+            <p>
+                <a data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Чистка МАС на CUCM
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample4">
+                <div class="card card-body card-bottom">
+                    <p class="strong"> В базе SQL на AW выполнить поиск добавочных (запросом из раздела "Запросы SQL - выборка актуальных добавочных номеров для чистки МАС на CUCM"), которые совершали звонки за определённый период (в среднем достаточно двух месяцев). Получившийся
+                        результат - то что удалять <strong id="strong">нельзя</strong>. Удалять необходимо то чего здесь нет, т.е. пропуски. Находим их в разделе "Сервисы - поиск пропущенных значений", и вставляем в первое окно в разделе "Чистка МАС на
+                        CUCM". Далее идём на CUCM, ищем номера интересующего пула, выставив отображение 250 значений. Копируем, вставляем в notepad. Переходим на следующую страницу в CUCM, копируем, вставляем следом в то же окно notepad. Повторять до
+                        конца пула. Сохраняем файл с расширением txt, получается список всех страниц из CUCM, содержащий все текущие добавочные номера выбранного пула. Данный файл загружаем на той же странице "Чистка МАС на CUCM", и нажимаем кнопку "Выполнить".
+                        Далее в загруженном файле система выполняет поиск каждого из введённых добавочных для удаления, если находит то проверяет статус, если он не "Registered" и "Unregistered" (то есть "None"), то добавляет строку из файла, содержащую
+                        найденный добавочный в список. Далее из каждого элемента этого списка извлекается МАС-адрес и формируется CSV-файл стандартного формата, который загружается в CUCM для массового удаления добавочных номеров.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>

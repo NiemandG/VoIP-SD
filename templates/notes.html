@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOIPINT/SD Services</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/voip.css">
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg color rounded-bottom ">
+            <a class="navbar-brand" href="#">VoIP/SD</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link " href="index">Главная</a>
+                    <a class="nav-item nav-link " href="services">Сервисы</a>
+                    <a class="nav-item nav-link" href="sql_query">Запросы SQL</a>
+                    <a class="nav-item nav-link active-navbar" href="#">Заметки</a>
+                    <a class="nav-item nav-link" href="instructions">Инструкции</a>
+                </div>
+                <img src="../static/images/cisco_logo.png" class="logo1" alt="" srcset="">
+                <img src="../static/images/erth.png" class="logo2" alt="" srcset="">
+                <img src="../static/images/ast_logo.png" class="logo3" alt="" srcset="">
+
+            </div>
+        </nav>
+        <ul>
+            <li>
+                Адреса серверов asterisk:
+                <ul>
+                    <li>Asterisk 11: 10.115.23.17</li>
+                    <li>Asterisk 22: 10.121.23.18</li>
+                    <li>Asterisk 32: 10.124.23.18</li>
+                    <li>Asterisk 41: 10.120.23.17</li>
+                </ul>
+            </li>
+
+            <li>Поиск фактов звонков выполняется в BI,в БД AW, в Sailormoon, через веб-интерфейс UCCE-астериска, в MVTS, в логах кластериска</li>
+            <li>Контакт-центровая телефония идёт напрямую на MVTS</li>
+            <li>MVTS только для исходящих звонков только через VoIP</li>
+            <li>Настройки маршрутизации вызовов телефонии КЦ задаются в Calling Search Space</li>
+            <li>Список очередей города: use asterisk_peer, select * from queue where cityname</li>
+            <li>Sip Show Peer - информация о SIP</li>
+            <li>dialplan show 25263@office - просмотр диалплана по конкретному номеру</li>
+            <li>Звонки из холдинга идут сразу на MVTS</li>
+            <li>Поиск нажатых кнопок IVR:
+                <ol>
+                    <li>Десятая переменная - адрес сервера с логом</li>
+                    <li>C:\Cisco\CVP\VXMLServer\applications</li>
+                    <li>Из КБ взять название скрипта, найти на AW, перед VXML уточнить название скрипта</li>
+                    <li>В Activity Log ищем инфу по номеру телефона</li>
+                </ol>
+            </li>
+            <li>/usr/share/asterisk/agi-bin ./radius.agi 89129888300 - проверка скриптов</li>
+            <li>717 - преселект для офисных маршрутов</li>
+            <li>Upload/Download file - Телефоны, Вставка телефонов - специальные сведения, phones - inceert phones, Name, template, escription, Run Immidiately</li>
+            <li>Контекст TRANSFER в CUCM для переадресации через него на внутренние номера</li>
+            <li>Перевод sccp на sip:
+                <ol>
+                    <li>записываем mac-адреса, номера и device pool`ы аппаратов</li>
+                    <li>отвязываем номера от mac-адресов (заходим в Line 1 - и отвязываем)/li>
+                        <li>удаляем аппараты по mac-адресам</li>
+                        <li>находим и открываем 79707 - копируем - вводим ранее записанные mac-адреса и номера телефонов</li>
+                </ol>
+                </li>
+                <li>на ТПКК нельзя перевести напрямую из ОКЦ</li>
+                <li>Таблица t.Phone содержит номера телефонов и ContactID, по ним в таблице t.Contact ищем CampainID, по ним в t.Campain. В tCampaignPhone можно искать CampainID по DN можно найти имя кампании</li>
+                <li>Desk settings может влиять на формирование ссылки для биллинга (не открывается вебарм)</li>
+                <li>Зануление файлов на астерах:
+                    <ol>
+                        <li>Зайти в папку, где кончилось место</li>
+                        <li>du -h | grep G - размеры всех папок с фильтром по гигабайтам (напр. Atop, Asterisk)</li>
+                        <li>cat /dev/null > messages - для файла лога messages</li>
+                        <li>df -h - проверяем сколько места теперь</li>
+                        <li>service monast restart - перезапуск монаст если ест место</li>
+                        <li>Занулить если не помогло</li>
+                    </ol>
+                </li>
+                <li>Порядок загрузки файлов телефоном через TFTP
+                    <ol>
+                        <li>Запрос файла конфигурации SEP2C3ECF7BF091.cnf.xml</li>
+                        <li>Загрузка файла прошивки SIP69xx.9-4-1-3SR3, чье имя было получено из файла конфигурации</li>
+                        <li>Запрос файла Russian_Russian_Federation/rtl-sccp.jar</li>
+                        <li>Запрос файла Russian_Federation/g3-tones.xml</li>
+                        <li>Запрос файла dialplan.xml</li>
+                        <li>Запрос файла softkey.xml</li>
+                    </ol>
+                </li>
+                <li>Пароль на питерских фанвилах - rikki</li>
+                <li>На фанвилах протоколы TCP и UDP иногда нужно поменять местами</li>
+                <li>Раскат CVP-скриптов: правой кнопкой по папке скрипта - Validate - Deploy. Далее на 10.101.19.32 Bulk Administration - VXML Applications - выбрать все серверы - выбрать файл - Transfer</li>
+                <li>Снятие дампа: tcpdump -i any -s 0 -w itl.pcap host 10.141.180.67</li>
+                <li>set http client cache stale - сброс кэша на шлюзах в случае проблем с роликами (10.101.19.71, 10.101.19.73, 10.102.19.71, 10.102.19.73)</li>
+
+        </ul>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>

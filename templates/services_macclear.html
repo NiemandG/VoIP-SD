@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOIPINT/SD Services</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/voip.css">
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg color rounded-bottom ">
+            <a class="navbar-brand" href="#">VoIP/SD</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link " href="index">Главная</a>
+                    <a class="nav-item nav-link active-navbar" href="#">Сервисы</a>
+                    <a class="nav-item nav-link" href="sql_query">Запросы SQL</a>
+                    <a class="nav-item nav-link" href="notes">Заметки</a>
+                    <a class="nav-item nav-link" href="instructions">Инструкции</a>
+                </div>
+                <img src="../static/images/cisco_logo.png" class="logo1" alt="" srcset="">
+                <img src="../static/images/erth.png" class="logo2" alt="" srcset="">
+                <img src="../static/images/ast_logo.png" class="logo3" alt="" srcset="">
+
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-xl-3">
+                <nav class="nav flex-column">
+                    <a class="nav-link unactive-side" href="services">Поиск свободных extension</a>
+                    <a class="nav-link unactive-side" href="services_addext">Привязка extension</a>
+                    <a class="nav-link unactive-side" href="services_missval">Поиск пропущенных значений</a>
+                    <a class="nav-link unactive-side" href="services_phonecheck">Проверка номера телефона</a>
+                    <a class="nav-link active-side" href="#">Чистка MAC на CUCM</a>
+                    <a class="nav-link unactive-side" target="_blank" href="http://10.101.52.205/cisco/">Конфигуратор для Cisco</a>
+                </nav>
+            </div>
+            <div class="col-xl-4">
+                <form action="/services_macclear" method="POST" enctype="multipart/form-data">
+                    <label for="oldext" style="display: block;">
+                        Введите старые extension, разделённые ";", например: <br>
+                        79569;79573;79580
+                    </label>
+                    <textarea name="data_oldext" id="oldext" cols="45" rows="5"></textarea>
+
+                    <label for="inputGroupFile02" style="display: block;">Выберите файл .txt с данными из CUCM:</label>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile02" name="choosen_file">
+                            <label class="custom-file-label" for="inputGroupFile02">Выбор файла</label>
+                        </div>
+
+                    </div>
+
+                    <button type="button submit" style="display: block;" class="btn btn-success">Выполнить</button> {{link|safe}}
+                </form>
+
+
+
+            </div>
+            <div class="col-xl-5">
+                <div class="container">
+                    <h5>{{val|safe}}</h5>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+</body>
+
+</html>
