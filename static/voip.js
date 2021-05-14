@@ -1,4 +1,4 @@
-const query_phone = 'RouterCallKeyDay,RouterCallKey,DateTime,DigitsDialed,CED,Duration,TalkTime,Variable1,Variable3,Variable4,Variable7,Variable8, Variable9, Variable10,DNIS,ANI,InstrumentPortNumber,AgentPeripheralNumber,SkillGroupSkillTargetID';
+const query_phone = 'RouterCallKeyDay,RouterCallKey,DateTime,DigitsDialed,CED,Duration,TalkTime,NetQTime,Variable1,Variable3,Variable4,Variable7,Variable8, Variable9, Variable10,DNIS,ANI,InstrumentPortNumber,AgentPeripheralNumber,SkillGroupSkillTargetID';
 let b1 = document.getElementById("b1");
 let b2 = document.getElementById("b2");
 let b3 = document.getElementById("b3");
@@ -8,6 +8,7 @@ let b6 = document.getElementById("b6");
 let b7 = document.getElementById("b7");
 let b8 = document.getElementById("b8");
 let b9 = document.getElementById("b9");
+let b10 = document.getElementById("b10");
 let c1 = document.getElementById("c1");
 let c2 = document.getElementById("c2");
 let c3 = document.getElementById("c3");
@@ -17,6 +18,7 @@ let c6 = document.getElementById("c6");
 let c7 = document.getElementById("c7");
 let c8 = document.getElementById("c8");
 let c9 = document.getElementById("c9");
+let c10 = document.getElementById("c10");
 
 
 
@@ -57,6 +59,9 @@ b8.addEventListener("click", function() {
 }, false);
 b9.addEventListener("click", function() {
     copy(c9);
+}, false);
+b10.addEventListener("click", function() {
+    copy(c10);
 }, false);
 
 exist_finesse_1.oninput = function() {

@@ -20,7 +20,7 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav mr-auto">
-                    <a class="nav-item nav-link " href="index">Главная</a>
+                    <!-- <a class="nav-item nav-link " href="index">Главная</a> -->
                     <a class="nav-item nav-link " href="services">Сервисы</a>
                     <a class="nav-item nav-link active-navbar" href="#">Запросы SQL</a>
                     <a class="nav-item nav-link" href="notes">Заметки</a>
@@ -71,7 +71,7 @@
                             <div><input type="date" id="phone_date_end"></div>
 
                         </div>
-                        <p id="c5" class="queries"><span class="green">SELECT</span> <span id="query1">RouterCallKeyDay,RouterCallKey,DateTime,DigitsDialed,CED,Duration,TalkTime,Variable1,Variable3,Variable4,Variable7,Variable8, Variable9, Variable10,DNIS,ANI,InstrumentPortNumber,AgentPeripheralNumber,SkillGroupSkillTargetID</span>
+                        <p id="c5" class="queries"><span class="green">SELECT</span> <span id="query1">RouterCallKeyDay,RouterCallKey,DateTime,DigitsDialed,CED,Duration,TalkTime,NetQTime,Variable1,Variable3,Variable4,Variable7,Variable8, Variable9, Variable10,DNIS,ANI,InstrumentPortNumber,AgentPeripheralNumber,SkillGroupSkillTargetID</span>
                             <br> <span class="green">FROM</span> [icm0_hds].[dbo].[t_Termination_Call_Detail]<br> <span class="green">WHERE</span> <br><span id="phone_onoff"></span>(ANI like '%<span id="phone_for_search_1">9129777400</span>'<span class="green"> OR </span>DigitsDialed
                             like '%<span id="phone_for_search_2">9129777400</span>'<span class="green"> OR</span> Variable1 like '%<span id="phone_for_search_3">9129777400</span>')<br> --InstrumentPortNumber = '81031'<br> --<span class="green">AND</span>                            RouterCallKey
                             <> 0<br> <span id="rckd_onoff">--</span>RouterCallKeyDay = <span id="rckd_val">156130</span> <span class="green">AND</span><br> <span id="rck_onoff">--</span> RouterCallKey = <span id="rck_val">91601</span><br> <span class="green"><span id="date_onoff"></span>AND</span>
@@ -199,13 +199,15 @@
                         <div class="card-body">
                             <span class="green">SELECT</span> *<br> <span class="green">FROM</span> [Outbound5].[dbo].[tContactLog]<br> <span class="green">WHERE</span> PhoneNumber like '%9278515912'<br>
                             <br> <span class="green">SELECT</span> *<br> <span class="green">FROM</span> [Outbound5].[dbo].[tContact]<br> <span class="green">WHERE</span> ContactId in (46611820,<br> 46872729,
-                            <br> 48065961,
-                            <br> 46618276,
-                            <br> 47008731)
+                            <br> 48065961)
                             <br>
                             <br> <span class="green">SELECT</span> * <br> <span class="green">FROM</span> [Outbound5].[dbo].[tPhone]<br> <span class="green">WHERE</span> Number like '%9270097620'<br>
                             <br> <span class="green">SELECT</span> *<br> <span class="green">FROM</span> [Outbound5].[dbo].[tCampaign]<br> <span class="green">WHERE</span> CampaignId = '100048'<br>
-                            <br> <span class="green">SELECT</span> *<br> <span class="green">FROM</span> [Outbound5].[dbo].[tCampaignPhone]<br> <span class="green">WHERE</span> CampaignPhone = '75632' </div>
+                            <br> <span class="green">SELECT</span> *<br> <span class="green">FROM</span> [Outbound5].[dbo].[tCampaignPhone]<br> <span class="green">WHERE</span> CampaignPhone = '75632' <br>
+                            <br><span class="green">SELECT</span> * <br><span class="green">FROM</span> [Outbound5].[dbo].[tContact2UserAttribute] <br><span class="green">WHERE</span> ContactId = 64401574 <br>
+                            <br><span class="green">SELECT</span> * <br><span class="green">FROM</span> [Outbound5].[dbo].[tVariable] <br><span class="green">WHERE</span> VariableMapId = 1 <br>
+                            <br><span class="green">SELECT</span> * <br><span class="green">FROM</span> [Outbound5].[dbo].[tVariableMap] <br><span class="green">
+                        </div>
                     </div>
                 </div>
 
@@ -242,85 +244,115 @@
                             <='2019-07-30 23:59:59' <br>
                                 <span class="green">AND</span> St.SkillTargetID=Agent.SkillTargetID<br> <span class="green">AND</span> SGm.AgentSkillTargetID = Agent.SkillTargetID<br> <span class="green">AND</span> SGm.SkillGroupSkillTargetID = SG.SkillTargetID<br>
                                 <span class="green">ORDER BY</span> St.DateTime asc</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
                             Выборка актуальных добавочных номеров для чистки MAC на CUCM
                   </button>
-                        </h5>
-                    </div>
-                    <div id="collapse8" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body form-inline">
-                            <button type="button" class="btn btn-success" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="Скопировано" id="b7">Скопировать</button>
+                            </h5>
                         </div>
-                        <p id="c7" class="queries"><span class="green">SELECT</span> distinct (InstrumentPortNumber) <br> <span class="green">FROM</span> [icm0_hds].[dbo].[t_Termination_Call_Detail]<br> <span class="green">WHERE</span>
-                            <br> DateTime >= '2019-03-01 00:00:00'<br> <span class="green">AND</span> InstrumentPortNumber >= 76000<br> <span class="green">AND</span> InstrumentPortNumber
-                            <=76999<br>
-                                <span class="green">ORDER BY</span> InstrumentPortNumber asc</p>
+                        <div id="collapse8" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body form-inline">
+                                <button type="button" class="btn btn-success" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="Скопировано" id="b7">Скопировать</button>
+                            </div>
+                            <p id="c7" class="queries"><span class="green">SELECT</span> distinct (InstrumentPortNumber) <br> <span class="green">FROM</span> [icm0_hds].[dbo].[t_Termination_Call_Detail]<br> <span class="green">WHERE</span>
+                                <br> DateTime >= '2019-03-01 00:00:00'<br> <span class="green">AND</span> InstrumentPortNumber >= 76000<br> <span class="green">AND</span> InstrumentPortNumber
+                                <=76999<br>
+                                    <span class="green">ORDER BY</span> InstrumentPortNumber asc</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
                             Чистка Finesse, все кто не супервайзер, не состоит в команде и не использовал УЗ
                   </button>
-                        </h5>
-                    </div>
-                    <div id="collapse9" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body form-inline">
-                            <button type="button" class="btn btn-success" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="Скопировано" id="b8">Скопировать</button>
+                            </h5>
                         </div>
-                        <p id="c8" class="queries"><span class="green">SELECT</span> icm0_awdb.dbo.t_Agent.PeripheralNumber <br> <span class="green">FROM</span> icm0_awdb.dbo.t_Agent<br> LEFT OUTER JOIN [icm0_hds].[dbo].[t_Termination_Call_Detail] ON [icm0_awdb].[dbo].[t_Agent].PeripheralNumber=[icm0_hds].[dbo].[t_Termination_Call_Detail].AgentPeripheralNumber<br>                            LEFT OUTER JOIN [icm0_awdb].[dbo].[t_Agent_Team_Member] ON [icm0_awdb].[dbo].[t_Agent].SkillTargetID=[icm0_awdb].[dbo].[t_Agent_Team_Member].SkillTargetID<br> <span class="green">WHERE</span>
-                            <br> [icm0_hds].[dbo].[t_Termination_Call_Detail].AgentPeripheralNumber IS NULL<br> <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent_Team_Member].SkillTargetID IS NULL<br> <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].SupervisorAgent
-                            = 'N'<br> <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].PeripheralNumber>='76000'<br> <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].PeripheralNumber
-                            <='76999' <br>
-                                <span class="green">ORDER BY</span> PeripheralNumber</p>
+                        <div id="collapse9" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body form-inline">
+                                <button type="button" class="btn btn-success" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="Скопировано" id="b8">Скопировать</button>
+                            </div>
+                            <p id="c8" class="queries"><span class="green">SELECT</span> icm0_awdb.dbo.t_Agent.PeripheralNumber <br> <span class="green">FROM</span> icm0_awdb.dbo.t_Agent<br> LEFT OUTER JOIN [icm0_hds].[dbo].[t_Termination_Call_Detail] ON [icm0_awdb].[dbo].[t_Agent].PeripheralNumber=[icm0_hds].[dbo].[t_Termination_Call_Detail].AgentPeripheralNumber<br>                                LEFT OUTER JOIN [icm0_awdb].[dbo].[t_Agent_Team_Member] ON [icm0_awdb].[dbo].[t_Agent].SkillTargetID=[icm0_awdb].[dbo].[t_Agent_Team_Member].SkillTargetID<br> <span class="green">WHERE</span>
+                                <br> [icm0_hds].[dbo].[t_Termination_Call_Detail].AgentPeripheralNumber IS NULL<br> <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent_Team_Member].SkillTargetID IS NULL<br> <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].SupervisorAgent
+                                = 'N'<br> <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].PeripheralNumber>='76000'<br> <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].PeripheralNumber
+                                <='76999' <br>
+                                    <span class="green">ORDER BY</span> PeripheralNumber</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
-                            Поиск агентов с числом скилл-групп более 50
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse">
+                            Чистка неактуальных Finesse ID
                   </button>
-                        </h5>
-                    </div>
-                    <div id="collapse" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body form-inline">
-                            <button type="button" class="btn btn-success" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="Скопировано" id="b9">Скопировать</button>
+                            </h5>
                         </div>
-                        <p id="c9" class="queries"><span class="green">SELECT</span> <br> a.AgentSkillTargetID,
-                            <br> b.EnterpriseName,
-                            <br> b.PeripheralNumber,
-                            <br> count(a.SkillGroupSkillTargetID) cnt_rows<br> <span class="green">FROM</span> t_Skill_Group_Member a,<br> t_Agent b<br> <span class="green">WHERE</span> a.AgentSkillTargetID = b.SkillTargetID<br> <span class="green">GROUP BY</span>                            a.AgentSkillTargetID,<br> b.PeripheralNumber
-                            <br> HAVING count(a.SkillGroupSkillTargetID) > 50<br><span class="green">ORDER BY</span> cnt_rows DESC</p>
+                        <div id="collapse10" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body form-inline">
+                                <button type="button" class="btn btn-success" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="Скопировано" id="b10">Скопировать</button>
+                            </div>
+                            <p id="c10" class="queries"><span class="green">SELECT</span> icm0_awdb.dbo.t_Agent.PeripheralNumber,at.EnterpriseName <br>
+                                <span class="green">FROM</span> icm0_awdb.dbo.t_Agent <br>
+                                <span class="green">LEFT OUTER JOIN</span> [icm0_hds].[dbo].[t_Termination_Call_Detail] <span class="green">ON</span> [icm0_awdb].[dbo].[t_Agent].PeripheralNumber=[icm0_hds].[dbo].[t_Termination_Call_Detail].AgentPeripheralNumber
+                                <br>
+                                <span class="green">LEFT OUTER JOIN</span> [icm0_awdb].[dbo].[t_Agent_Team_Member] <span class="green">ON</span> [icm0_awdb].[dbo].[t_Agent].SkillTargetID=[icm0_awdb].[dbo].[t_Agent_Team_Member].SkillTargetID, <br> icm0_awdb.dbo.t_Agent_Team
+                                at <br>
+                                <span class="green">WHERE</span> <br> [icm0_hds].[dbo].[t_Termination_Call_Detail].AgentPeripheralNumber IS NULL <br>
+                                <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].SupervisorAgent = 'N' <br>
+                                <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].PeripheralNumber>='76000' <br>
+                                <span class="green">AND</span> [icm0_awdb].[dbo].[t_Agent].PeripheralNumber
+                                <='76999' <br>
+                                    <span class="green">AND</span> at.AgentTeamID = icm0_awdb.dbo.t_Agent_Team_Member.AgentTeamID <br>
+                                    <span class="green">ORDER BY</span> EnterpriseName</p>
+                        </div>
                     </div>
+
+
+
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                            Поиск агентов с числом скилл-групп более 50
+                            </button>
+                            </h5>
+                        </div>
+                        <div id="collapse" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body form-inline">
+                                <button type="button" class="btn btn-success" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="Скопировано" id="b9">Скопировать</button>
+                            </div>
+                            <p id="c9" class="queries"><span class="green">SELECT</span> <br> a.AgentSkillTargetID,
+                                <br> b.EnterpriseName,
+                                <br> b.PeripheralNumber,
+                                <br> count(a.SkillGroupSkillTargetID) cnt_rows<br> <span class="green">FROM</span> t_Skill_Group_Member a,<br> t_Agent b<br> <span class="green">WHERE</span> a.AgentSkillTargetID = b.SkillTargetID<br> <span class="green">GROUP BY</span>                                a.AgentSkillTargetID,<br> b.PeripheralNumber
+                                <br> HAVING count(a.SkillGroupSkillTargetID) > 50<br><span class="green">ORDER BY</span> cnt_rows DESC</p>
+                        </div>
+                    </div>
+
+
                 </div>
-
-
             </div>
         </div>
-    </div>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="../static/voip.js"></script>
-    <script>
-        $(function() {
-            $('[data-toggle="popover"]').popover()
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="../static/voip.js"></script>
+        <script>
+            $(function() {
+                $('[data-toggle="popover"]').popover()
 
-        })
-    </script>
+            })
+        </script>
 </body>
 
 </html>

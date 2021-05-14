@@ -9,7 +9,7 @@ no_file = '<div class="alert alert-danger" role="alert" style="text-align: cente
 ext_error = '<div class="alert alert-danger" role="alert" style="text-align: center;"><h4>Недостаточно МАС</h4></div>'
 phone_error  = '<div class="alert alert-danger" role="alert" style="text-align: center;"><h4>Неверный номер телефона</h4></div>'
 phone_link = '<a class="btn btn-success" href="https://www.spravportal.ru/Services/PhoneCodes/MobilePhoneInfo.aspx" role="button" target="_blank">Проверка переноса номера</a>'
-ALLOWED_EXTENSIONS = {'txt'}
+ALLOWED_EXTENSIONS = {'txt', 'mp4'}
 UPLOAD_FOLDER = 'tmp'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -21,10 +21,13 @@ def logging(str):
 	with open ('logging.txt','a') as l:
 		l.write(str + '\n')
 
+@app.route('/',methods=['POST','GET'])
+def redir():
+    return redirect('/services')
 
-@app.route('/index',methods=['POST','GET'])
-def index() -> str:
-	return render_template('index.html')
+# @app.route('/index',methods=['POST','GET'])
+# def index() -> str:
+# 	return render_template('index.html')
 
 @app.route('/notes',methods=['POST','GET'])
 def notes() -> str:
@@ -213,4 +216,4 @@ def services_phonecheck() -> 'html':
 	except:
 		return render_template('services_phonecheck.html', out_dict = response_dict)
 
-app.run(host='0.0.0.0', debug=True)
+app.run(host='0.0.0.0', debug=False, port=5010)
