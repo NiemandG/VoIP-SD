@@ -12,6 +12,7 @@ phone_link = '<a class="btn btn-success" href="https://www.spravportal.ru/Servic
 ALLOWED_EXTENSIONS = {'txt', 'mp4'}
 UPLOAD_FOLDER = 'tmp'
 app = Flask(__name__)
+#test
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename):
 	return '.' in filename and \
@@ -27,7 +28,7 @@ def redir():
 
 # @app.route('/index',methods=['POST','GET'])
 # def index() -> str:
-# 	return render_template('index.html')
+# 	return render_template('index.html') qwertys
 
 @app.route('/notes',methods=['POST','GET'])
 def notes() -> str:
